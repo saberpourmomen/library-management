@@ -7,20 +7,16 @@ import com.collabera.digital.library.management.exception.DuplicateBorrowerExcep
 import com.collabera.digital.library.management.exception.ResourceNotFoundException;
 import com.collabera.digital.library.management.model.Book;
 import com.collabera.digital.library.management.model.Borrower;
-import com.collabera.digital.library.management.repository.IBookRepository;
 import com.collabera.digital.library.management.repository.IBorrowRepository;
 import com.collabera.digital.library.management.service.IBookService;
 import com.collabera.digital.library.management.service.IBorrowerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 public class BorrowerServiceImpl implements IBorrowerService {
