@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: library-management
+  datasource:
+    url: jdbc:mysql://localhost:3360/library_management
+    username: root
+    password: Dev2024#
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 9000
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+
+
