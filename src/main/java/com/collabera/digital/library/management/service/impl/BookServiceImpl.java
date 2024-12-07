@@ -36,7 +36,7 @@ public class BookServiceImpl implements IBookService {
     public BookDto register(BookDto bookDto) {
             Optional<List<Book>> existBooks=bookRepository.findByIsbn(bookDto.getIsbn());
             Book book;
-            if (existBooks.isPresent() && existBooks.get().size()>0){
+            if (existBooks.isPresent() && !existBooks.get().isEmpty()){
                 Book existBook=existBooks.get().get(0);
                 if(!existBook.getTitle().equals(bookDto.getTitle()) || !existBook.getAuthor().equals(bookDto.getAuthor()) ){
                     throw new ISBNConflictException("Books with the same ISBN must have the same title and author");

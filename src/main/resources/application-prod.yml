@@ -2,14 +2,14 @@ spring:
   application:
     name: library-management
   datasource:
-    url: jdbc:mysql://localhost:3360/library_management
+    url: jdbc:mysql://localhost:3306/library_management
     username: root
     password: Dev2024#
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
