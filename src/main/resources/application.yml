@@ -1,18 +1,16 @@
 spring:
   application:
     name: library-management
-  datasource:
-    url: jdbc:mysql://localhost:3360/library_management
-    username: root
-    password: Dev2024#
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
+    datasource:
+      url: ${DB_URL}
+      username: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+      driver-class-name: org.postgresql.Driver
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        ddl-auto: update
+        show-sql: true
 server:
   port: 9000
 springdoc:

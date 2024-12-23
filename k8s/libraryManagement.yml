@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-management-deployment
+  labels:
+    app: library-management
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: library-management
+  template:
+    metadata:
+      labels:
+        app: library-management
+    spec:
+      containers:
+        - name: library-management
+          image: saberpourmomen/library-management:1.0.0
+          ports:
+            - containerPort: 9000
+          env:
+            - name: DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: postgresql-config
+                  key: postgres-url
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-secret
+                  key: POSTGRES_PASSWORD
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: library-management-service
+spec:
+  type: NodePort
+  selector:
+    app: library-management
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
+      nodePort: 30100
